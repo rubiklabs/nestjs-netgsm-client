@@ -41,6 +41,10 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"
   },
+  "peerDependencies": {
+    "@nestjs/common": "^9.0.0",
+    "@nestjs/core": "^9.0.0"
+  },
   "dependencies": {
     "@nestjs/axios": "^1.0.1",
     "axios": "1.2.2",
