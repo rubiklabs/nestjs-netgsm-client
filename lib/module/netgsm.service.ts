@@ -15,7 +15,7 @@ export class NetgsmService {
   constructor(
     @Inject(MODULE_OPTIONS_TOKEN) private options: NetgsmModuleOptions,
     private readonly httpService: HttpService,
-  ) {}
+  ) { }
 
   public async sendSms(phoneNumber: string, message: string) {
     try {
@@ -29,7 +29,7 @@ export class NetgsmService {
           data: `<?xml version="1.0" encoding="UTF-8"?>
           <mainbody>
           <header>
-          <company dil="TR">Netgsm</company>        
+          <company dil="TR">Netgsm</company>
           <usercode>${this.options.username}</usercode>
           <password>${this.options.password}</password>
           <type>1:n</type>
@@ -45,7 +45,7 @@ export class NetgsmService {
         }),
       );
 
-      const code: IResponseCode['data'] = data.slice(
+      const code: IResponseCode['data'] = data.toString().slice(
         0,
         2,
       ) as unknown as IResponseCode['data'];
@@ -54,7 +54,7 @@ export class NetgsmService {
         code: code,
         message:
           code === '00'
-            ? responses[code] + ' Mesaj Gönderim Kodu: ' + data.slice(3)
+            ? responses[code] + ' Mesaj Gönderim Kodu: ' + data.toString().slice(3)
             : responses[code],
       };
     } catch (e: any) {
